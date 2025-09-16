@@ -53,28 +53,28 @@ VOID DriverUnload(PDRIVER_OBJECT DriverObject)
 
 NTSTATUS DriverEntryMain(PDRIVER_OBJECT DriverObject, PUNICODE_STRING RegistryPath)
 {
-    g_DriverObject = DriverObject;
-
     UNICODE_STRING earlyBootPattern, guardPattern;
     RtlInitUnicodeString(&earlyBootPattern, L"*.ZAM_EarlyBoot");
     RtlInitUnicodeString(&guardPattern, L"*ZAM_Guard");
 
     if (HlpMatchUnicodeString(&earlyBootPattern, RegistryPath)) {
         g_DriverLoadContext = 2; // EarlyBoot
+        // Call the (currently stubbed) early boot functions
+        InitializeEarlyBootFeatures();
+        ConfigureEarlyBootFromRegistry(RegistryPath);
     }
     else if (HlpMatchUnicodeString(&guardPattern, RegistryPath)) {
         g_DriverLoadContext = 3; // Guard
         InitializeTracing(L"ZAM_Guard.krnl.trace");
+        return DriverInit(DriverObject);
     }
     else {
         g_DriverLoadContext = 1; // Default
         InitializeTracing(L"ZAM.krnl.trace");
-    }
-
-    if (g_DriverLoadContext != 2) {
         return DriverInit(DriverObject);
     }
 
+    // For EarlyBoot, the main initialization is skipped, so we just return success.
     return STATUS_SUCCESS;
 }
 

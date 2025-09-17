@@ -37,7 +37,7 @@ BOOLEAN IsProcessAuthorized(ULONG ProcessId, BOOLEAN AcquireLock)
 }
 
 
-NTSTATUS AddProcessToAuthorizedList(ULONG ProcessId)
+NTSTATUS AddProcessToAuthorizedList(ULONG ProcessId) 
 {
     NTSTATUS status = STATUS_UNSUCCESSFUL;
     PEPROCESS pProcess = NULL;
@@ -82,7 +82,7 @@ NTSTATUS AddProcessToAuthorizedList(ULONG ProcessId)
     }
 
     PAUTH_ENTRY entry = &g_AuthList[slotIndex];
-    entry->ProcessId = ProcessId;
+    entry->ProcessId = ProcessId; // NIGGA \(-__-)/
     entry->SessionId = PsGetProcessSessionId(pProcess);
     RtlCopyMemory(entry->ImageFileName, imageName, 255);
 

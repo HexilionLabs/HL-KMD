@@ -22,7 +22,6 @@ BOOLEAN IsProcessAuthorized(ULONG ProcessId, BOOLEAN AcquireLock)
         KeAcquireSpinLock(&g_AuthListLock, &oldIrql);
     }
 
-    // Iterate through the list to find the ProcessId.
     for (int i = 0; i < 100; i++) {
         if (g_AuthList[i].ProcessId == ProcessId) {
             isFound = TRUE;

@@ -8,7 +8,6 @@
 #include <tlhelp32.h>
 
 static DWORD FindProcessIdByName(const char* processName) {
-    // Convert input ANSI name to wide string to match UNICODE PROCESSENTRY32W
     WCHAR wProcessName[MAX_PATH];
     int converted = MultiByteToWideChar(CP_ACP, 0, processName, -1, wProcessName, MAX_PATH);
     if (converted == 0) {

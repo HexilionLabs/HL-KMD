@@ -82,7 +82,7 @@ NTSTATUS AddProcessToAuthorizedList(ULONG ProcessId)
     }
 
     PAUTH_ENTRY entry = &g_AuthList[slotIndex];
-    entry->ProcessId = ProcessId; // NIGGA \(-__-)/
+    entry->ProcessId = ProcessId;
     entry->SessionId = PsGetProcessSessionId(pProcess);
     RtlCopyMemory(entry->ImageFileName, imageName, 255);
 

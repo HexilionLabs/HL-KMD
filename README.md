@@ -8,6 +8,6 @@ Use the sc (Service Control) utility to create and start the service.
 - `sc create vldrv type= kernel binPath= C:\Temp\wamsdk.sys`
 - `sc start vldrv`
 
-## Compile the PoC
-Compile the source code with Visual Studio
+## Using the PoC
+Compile the source code with Visual Studio and use the PoC:
 - `./um-pipe [PID or PROCCESS NAME] [options]`

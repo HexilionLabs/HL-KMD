@@ -7,3 +7,7 @@ The vulnerability exists in the driver's I/O dispatch routine for IRP_MJ_DEVICE_
 Use the sc (Service Control) utility to create and start the service.
 - `sc create vldrv type= kernel binPath= C:\Temp\wamsdk.sys`
 - `sc start vldrv`
+
+## Compile the PoC
+Compile the source code with Visual Studio
+- `./um-pipe [PID or PROCCESS NAME] [options]`
